@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <title>Demo My Angular</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
+    <script src="demoAngular.js"></script>
+    <script src="demoJQuery.js"></script>
+    <style>
+        body { background-color:rgb(230,250,230); 
+        } 
+         
+        .myJumbotron { background: -webkit-linear-gradient(top, gold,white ) ;
+                       background: linear-gradient(to top,gold,white ) ; 
+                       padding: 50px;}
+
+        #picInBottom { position:absolute;
+                       margin: 0;
+                       padding: 0; 
+                       float:left;
+                       bottom:0;
+                       height:90px;
+                       background-color:rgb(230,250,230);
+
+        }
+    </style>
+</head>
+<body ng-app="myExample" ng-controller="MyMainController">
+    <div ng-controller="MyAboutController">
+        <div class="container">
+            <h1 class="text-center text-danger"><strong>{{headingCaption}}</strong></h1>
+            <br />
+            <div ng-include src="'header.html'"></div>
+            <br />
+            <div class="myJumbotron">
+                <h2 class="text-center text-success">About My ASP.NET design</h2>
+                <h5 class="text-justify text-info">
+                    <br />
+                    This demo to demonstrate my understanding of AngularJS. AngularJS is a structural framework for dynamic web applications and can be used in many systems. My designs are all based on Angular, bootstrap3 and jQuery. JQuery is only used in about page to handle the images and some others. The data shown on the list page which is defined in Angular controllers methods and the page layout is referenced by bootstrap3. All the data can be replaced when the system connects to a real Database. The source code editing and testing are in Visual Studio community 2015.<br />
+                    Looking for a software engineer position now, please email: wendyxiao00@gmail.com
+                    <br />
+                </h5>
+                <label class="btn btn-success"> reference website:</label><br />
+                <h6 class="text-success">
+                    https://docs.angularjs.org <br />
+                    http://getbootstrap.com <br />
+                    http://learn.jquery.com <br />
+                    https://mva.microsoft.com <br />
+                    https://www.youtube.com/~ video with relative's topics ~
+                </h6>
+            </div>
+        </div>
+    </div>
+    <div ng-controller="MyListController">
+        <div ng-repeat="p in products">
+            <div id="picInBottom">
+                <img style="position:absolute;float:left" src="{{p.pName}}" width="120px" height="90px" id="p{{p.id}}">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<!--@copyright  wendy xiao demo angular 5-25-2016 -->

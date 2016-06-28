@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html lang="en"  >
+<head>
+    <title>Demo My Angular</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
+    <script src="demoAngular.js"></script>
+    <style>
+        body { background-color:rgb(255,240,240);}
+    </style>
+</head>
+<body ng-app="myExample" ng-controller="MyMainController"  >
+    <div ng-controller="MyMainController" class="container">
+        <br />
+        <h1 class="text-center text-danger"><strong>{{headingCaption}}</strong></h1>
+        <br />
+        <div ng-include src="'header.html'"></div>
+        <br />
+        <br />
+        <div id="view">
+            <main-view></main-view>
+        </div>
+    </div>
+</body>
+</html>
+<!-- @copyright wendy xiao demo angular 5-25-2016 -->
+ 

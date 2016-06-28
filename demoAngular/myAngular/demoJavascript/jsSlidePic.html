@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>My Slide Picture Test</title>
+	<meta charset="UTF-8" />
+    <style>
+            body { background-color: #f1f1f1;        }
+    </style>
+</head>
+<body>
+    <div>
+          <h1>My Javascript Test</h1>
+    </div>
+     
+    <script>
+        var myDiv0 = document.getElementsByTagName("div")[0];
+        document.getElementsByTagName("div")[0].style.position = "absolute";
+        document.getElementsByTagName("div")[0].style.top = 0 + "px";
+        document.getElementsByTagName("div")[0].style.left = 0 + "px";
+        document.getElementsByTagName("div")[0].style.width = "600px";
+        document.getElementsByTagName("div")[0].style.height = "500px";
+        document.getElementsByTagName("div")[0].style.backgroundColor = "lightgoldenrodyellow";
+        document.getElementsByTagName("div")[0].style.fontFamily = "Arial";
+   
+  
+        myDiv0.appendChild(document.createElement("h1"));
+        document.getElementsByTagName("h1")[0].style.position = "relative";
+        document.getElementsByTagName("h1")[0].style.top = 0 + "px";
+        document.getElementsByTagName("h1")[0].style.left = 0 + "px";
+        document.getElementsByTagName("h1")[0].style.color = "darkgreen";
+        document.getElementsByTagName("h1")[0].style.textAlign = "center";
+
+        // show all <div>
+        var divLeft = document.createElement("div");
+        var divImg = document.createElement("div");
+        var divRight = document.createElement("div");
+        myDiv0.appendChild(divLeft);
+        myDiv0.appendChild(divImg);
+        myDiv0.appendChild(divRight);
+        
+        var divSetting = [
+             { position: "relative", top: "0px", left: "40px", width: "50px", height: "300px", float: "left" },
+             { position: "relative", top: "0px", left: "40px", width: "400px", height: "300px", float: "left" },
+             { position: "relative", top: "0px", left: "40px", width: "50px", height: "300px", float: "left" }
+        ];
+        
+        var tempDiv;
+        for (var i in divSetting) {
+            if (i == 0) {
+                tempDiv = divLeft;
+                tempDiv.style.background = "-webkit-linear-gradient(left,steelblue, white)";
+                tempDiv.style.background = "linear-gradient( to left,steelblue, white)";
+            }
+            else if (i == 1) {
+                tempDiv = divImg;
+                tempDiv.style.backgroundColor = "lightgoldenrodyellow";
+            }
+            else if (i == 2) {
+                tempDiv = divRight;
+                tempDiv.style.background = "-webkit-linear-gradient(right,steelblue, white)";
+                tempDiv.style.background = "linear-gradient( to right,steelblue, white)";
+
+            }
+            tempDiv.style.position = divSetting[i].position;
+            tempDiv.style.top = divSetting[i].top;
+            tempDiv.style.left = divSetting[i].left;
+            tempDiv.style.width = divSetting[i].width;
+            tempDiv.style.height = divSetting[i].height;
+            tempDiv.style.float = divSetting[i].float;
+        }
+
+        //show  <Symbol>
+        var prevSymbol = document.createTextNode( decodeURI("%C2%AB") );
+        var myPrev = document.createElement("h2");
+        myPrev.appendChild(prevSymbol);
+        divLeft.appendChild(myPrev);
+        setSymbol(myPrev);
+  
+        var nextSymbol = document.createTextNode(decodeURI("%C2%BB"));
+        var myNext = document.createElement("h2");
+        myNext.appendChild(nextSymbol);
+        divRight.appendChild(myNext);
+        setSymbol(myNext);
+        
+        function setSymbol( elem ) {
+            elem.style.position = "relative";
+            elem.style.left = 11 + "px";
+            elem.style.top = 80 + "px";
+            elem.style.fontSize = 48 + "px";
+            elem.style.color = "white";
+        }
+ 
+        //show  <img> 
+        var myImg = document.createElement("img");
+        myImg.style.position = "relative";
+        myImg.style.height = "100%";
+        myImg.style.width = "100%";
+        myImg.setAttribute("src", "../demoPhoto/p01.gif");
+        myImg.setAttribute("alt", "image#");
+        divImg.appendChild(myImg);
+ 
+        //show  <P>
+        var left = divImg.offsetLeft;
+        var top = divImg.offsetTop;
+        var  myText = document.createElement("p");
+        myNode = document.createTextNode("demo");
+        myText.style.clear = "both";
+        myText.style.position = "relative";
+        myText.style.top = 30 + "px";
+        myText.style.textAlign = "center";
+        myText.style.color="darkred";
+        myText.style.fontSize= "24px" ;
+        myText.appendChild(myNode);
+        myDiv0.appendChild(myText);
+        myText.setAttribute("id", "caption");
+ 
+        document.getElementById("caption").innerHTML = "<strong>image 001</strong>";
+
+        // click event handler
+        var index = 1;
+        if (encodeURIComponent(myPrev.innerHTML).indexOf("%C2%AB") != -1) {
+            myPrev.addEventListener("click", function () {
+                if (index > 1)
+                    index--;
+                else if (index == 1)
+                    index = 15;
+                if (index >= 10 ){
+                    myImg.src = "../demoPhoto/p" + index + ".gif";
+                    document.getElementById("caption").innerHTML = "<strong>image " + index + "</strong>"
+                }
+                else {
+                    myImg.src = "../demoPhoto/p0" + index + ".gif";
+                    document.getElementById("caption").innerHTML = "<strong>image 0" + index + "</strong>"
+                }
+            });
+        }
+        if (encodeURIComponent(myNext.innerHTML).indexOf('%C2%BB') != -1) {
+            myNext.addEventListener("click", function () {
+                if (index < 15)
+                    index++;
+                else if (index == 15)
+                    index = 1;
+                if (index >= 10 ){
+                    myImg.src = "../demoPhoto/p" + index + ".gif";
+                    document.getElementById("caption").innerHTML = "<strong>image " + index + "</strong>"
+                }
+                else {
+                    myImg.src = "../demoPhoto/p0" + index + ".gif";
+                    document.getElementById("caption").innerHTML = "<strong>image 0" + index + "</strong>"
+                }
+            });
+        }
+
+        var temp = document.getElementsByTagName("div")[0].style.height;
+        if (Number(temp.slice(0, temp.length - 2)) >= window.innerHeight)
+            document.getElementsByTagName("div")[0].style.top = 0 + "px";
+        else
+            document.getElementsByTagName("div")[0].style.top = (window.innerHeight - Number(temp.slice(0, temp.length - 2))) / 2 + "px";
+        temp = document.getElementsByTagName("div")[0].style.width;
+        if (Number(temp.slice(0, temp.length - 2)) >= window.innerWidth)
+            document.getElementsByTagName("div")[0].style.left = 0 + "px";
+        else
+            document.getElementsByTagName("div")[0].style.left = (window.innerWidth - (temp.slice(0, temp.length - 2))) / 2 + "px";
+
+        window.addEventListener("resize", function () {
+            var H = document.getElementsByTagName("div")[0].style.height;
+            var W = document.getElementsByTagName("div")[0].style.width;
+
+            if (Number(H.slice(0, H.length - 2)) >= window.innerHeight)
+                document.getElementsByTagName("div")[0].style.top = 0 + "px";
+            else
+                document.getElementsByTagName("div")[0].style.top = (window.innerHeight -  Number(H.slice(0, H.length - 2))) / 2 + "px";
+
+            if (Number(W.slice(0, W.length - 2)) >= window.innerWidth)
+                document.getElementsByTagName("div")[0].style.left = 0 + "px";
+            else
+                document.getElementsByTagName("div")[0].style.left = (window.innerWidth - Number(W.slice(0, W.length - 2))) / 2 + "px";
+        });
+
+    </script>
+</body>
+</html>
+<!-- wendy xiao test javascript code 5/17/2016 -->
